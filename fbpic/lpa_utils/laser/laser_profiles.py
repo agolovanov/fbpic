@@ -841,7 +841,7 @@ class FewCycleLaser( LaserProfile ):
 class FromLasyFileLaser( LaserProfile ):
     """Class that emits a laser from a lasy file"""
 
-    def __init__(self, filename, t_start=0.):
+    def __init__(self, filename, t_start=0., multiplier=1.0):
         """
         Define a laser whose profile is determined by a
         `lasy <https://lasydoc.readthedocs.io/en/latest/>`_ file.
@@ -864,6 +864,7 @@ class FromLasyFileLaser( LaserProfile ):
         # Initialize propagation direction and mark as GPU capable
         LaserProfile.__init__(self, propagation_direction=1, gpu_capable=False)
         self.t_start = t_start
+        self.multiplier = multiplier
 
         # Open and read the lasy file
         f = h5py.File( filename, mode="r" )
@@ -1002,7 +1003,7 @@ class FromLasyFileLaser( LaserProfile ):
         See the docstring of LaserProfile.E_field
         """
         # Perform interpolation from envelope data
-        env = self.interp_function(x, y, (t-self.t_start) )
+        env = self.multiplier * self.interp_function(x, y, (t-self.t_start) )
         # Add laser oscillations
         E = (env * np.exp(
             -1.j*self.omega * (t - self.t_start + self.t_min_lasy)
