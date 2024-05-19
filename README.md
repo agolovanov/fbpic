@@ -64,29 +64,34 @@ it from [here](https://www.continuum.io/downloads).
 **Installation steps**:
 
 - Install the dependencies of FBPIC. This can be done in two lines:
-```
-conda install numba scipy h5py mkl
-conda install -c conda-forge mpi4py
-```
+    ```
+    conda install numba scipy h5py mkl
+    conda install -c conda-forge mpi4py
+    ```
 - Download and install FBPIC:
-```
-pip install fbpic
-```
-(If you want to run FBPIC through the [PICMI](https://picmi-standard.github.io/)
-interface, you can instead use `pip install fbpic[picmi]`.)
+    ```
+    pip install fbpic
+    ```
+    (If you want to run FBPIC through the [PICMI](https://picmi-standard.github.io/)
+    interface, you can instead use `pip install fbpic[picmi]`.)
 
 - **Optional:** in order to run on GPU, install the additional package
-`cupy` -- e.g. using CUDA version 11.8. (The command below also automatically installs `cudatoolkit` which is also needed by FBPIC.)
-```
-conda install cupy cuda-version=11.8
-```
-(In the above command, you should choose a CUDA version that is compatible with your GPU driver ; see [this table](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#major-components__table-cuda-toolkit-driver-versions) for more info.)
+    `cupy` — e.g. using CUDA version 11.8. (The command below also automatically installs `cudatoolkit` which is also needed by FBPIC.)
+    ```
+    conda install cupy cuda-version=11.8
+    ```
+    (In the above command, you should choose a CUDA version that is compatible with your GPU driver ; see [this table](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#major-components__table-cuda-toolkit-driver-versions) for more info.)
+
+    If you want to use CUDA version 12+ which no longer comes with the `cudatoolkit` package, explicit installation of `cuda-nvcc` and `cuda-nvrtc` is required
+    ```
+    conda install cupy cuda-version=12.0 cuda-nvcc cuda-nvrtc
+    ```
 
 - **Optional:** in order to run on a CPU which is **not** an Intel model, you
 need to install `pyfftw`, in order to replace the MKL FFT:
-```
-conda install -c conda-forge pyfftw
-```
+    ```
+    conda install -c conda-forge pyfftw
+    ```
 
 ## Running simulations
 

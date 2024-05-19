@@ -39,19 +39,32 @@ Python. If Anaconda is not your default Python distribution, download and instal
        A shortcut for this is: ``python3 -m pip install git+https://github.com/fbpic/fbpic.git``.
 
 -  **Optional:** In order to be able to run the code on a GPU,
-   install the additional package ``cupy``.
+   install the additional package ``cupy`` as well as dependencies needed to enable GPU support in ``numba``.
 
+   For CUDA versions below 12, install ``cupy`` and ``cuda-version`` (which will automatically install ``cudatoolkit``), for example
    ::
 
 
-       conda install -c conda-forge cupy
+       conda install -c conda-forge cupy cuda-version=11.8
+
+   For CUDA 12+ which no longer provides the ``cudatoolkit`` package, explicit installation of ``cuda-nvcc`` and ``cuda-nvrtc`` is required
+
+   :: 
+
+      conda install -c conda-forge cupy cuda-version=12.0 cuda-nvcc cuda-nvrtc
 
    .. warning::
 
-       In the above command, you should choose a CUDA version that is **compatible
+       In the above commands, you should choose a CUDA version that is **compatible
        with your GPU driver**. You can see the version of your GPU driver by typing
        the command ``nvidia-smi``. You can then find the compatible CUDA
        versions using `this table <https://docs.nvidia.com/deploy/cuda-compatibility/index.html#use-the-right-compat-package>`__.
+
+       To prevent ``conda`` from automatically updating the CUDA packages to incompatible newer versions, pin the ``cuda-version`` package, e.g.
+       
+       ::
+         
+          echo "cuda-version==12.0.*" > $CONDA_PREFIX/conda-meta/pinned
 
 -  **Optional:** In order to run on a CPU which is **not** an Intel model, you need to install `pyfftw`, in order to replace the MKL FFT:
 
