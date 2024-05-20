@@ -60,12 +60,6 @@ Python. If Anaconda is not your default Python distribution, download and instal
        the command ``nvidia-smi``. You can then find the compatible CUDA
        versions using `this table <https://docs.nvidia.com/deploy/cuda-compatibility/index.html#use-the-right-compat-package>`__.
 
-       To prevent ``conda`` from automatically updating the CUDA packages to incompatible newer versions, pin the ``cuda-version`` package, e.g.
-       
-       ::
-         
-          echo "cuda-version==12.0.*" > $CONDA_PREFIX/conda-meta/pinned
-
 -  **Optional:** In order to run on a CPU which is **not** an Intel model, you need to install `pyfftw`, in order to replace the MKL FFT:
 
    ::
