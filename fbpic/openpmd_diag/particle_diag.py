@@ -147,10 +147,10 @@ class ParticleDiagnostic(OpenPMDDiagnostic) :
         """
         # Generic attributes
         grp.attrs["particleShape"] = 1.
-        grp.attrs["currentDeposition"] = np.string_("directMorseNielson")
-        grp.attrs["particleSmoothing"] = np.string_("none")
-        grp.attrs["particlePush"] = np.string_("Vay")
-        grp.attrs["particleInterpolation"] = np.string_("uniform")
+        grp.attrs["currentDeposition"] = np.bytes_("directMorseNielson")
+        grp.attrs["particleSmoothing"] = np.bytes_("none")
+        grp.attrs["particlePush"] = np.bytes_("Vay")
+        grp.attrs["particleInterpolation"] = np.bytes_("uniform")
 
         # Setup constant datasets (e.g. charge, mass)
         for quantity in constant_quantities:
