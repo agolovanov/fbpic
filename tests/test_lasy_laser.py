@@ -172,7 +172,7 @@ def run_and_check_laser_emission(gamma_b, data_dir, lasy_geometry):
     sim.set_moving_window(v=c)
 
     # Add the laser
-    laser_profile = FromLasyFileLaser( 'laguerrelaserRZ_00000.h5' )
+    laser_profile = FromLasyFileLaser( 'diags/laguerrelaserRZ_00000.h5' )
     add_laser_pulse(sim, laser_profile, method='antenna',
                     z0_antenna=0, gamma_boost=gamma_b)
 
